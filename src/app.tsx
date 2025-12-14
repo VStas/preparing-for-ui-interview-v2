@@ -13,8 +13,8 @@ import { MarkdownExample } from "./done/markdown/markdown.react";
 import { ProgressBarExample } from "./done/progress-bar/progress-bar.react";
 import { SquareGameExample } from "./done/square-game/square-game.react";
 import { UploadComponentExample } from "./done/upload-component/upload-component.react";
-import { InfiniteCanvas } from "./in-progress/infinite-canvas/infinite-canvas.react";
-import { GalleryExample } from "./in-progress/gallery/gallery.react";
+import { InfiniteCanvasExample } from "./in-progress/infinite-canvas/infinite-canvas.react";
+import { GalleryExample } from "./done/gallery/gallery.react";
 
 
 const EXAMPLES = {
@@ -71,7 +71,7 @@ const EXAMPLES = {
     infiniteCanvas: {
         id: "infiniteCanvas",
         name: "Infinite Canvas",
-        component: InfiniteCanvas,
+        component: InfiniteCanvasExample,
     },
     gallery: {
         id: "gallery",
