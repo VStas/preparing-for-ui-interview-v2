@@ -139,4 +139,4 @@ export const GPTComponent = () => {
     );
 };
 
-export const GPTComponentExample = () => <GPTComponent />;
+

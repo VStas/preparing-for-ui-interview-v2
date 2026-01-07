@@ -132,6 +132,12 @@ enum TRichTextXMLNodes {
     Header1 = 'h1',
     /** Level 2 header - rendered as <h2> */
     Header2 = 'h2',
+    /** Level 3 header - rendered as <h3> */
+    Header3 = 'h3',
+    /** Level 4 header - rendered as <h4> */
+    Header4 = 'h4',
+    /** Level 5 header - rendered as <h5> */
+    Header5 = 'h5',
     /** Unordered list container - rendered as <ul> */
     UnorderedList = 'ul',
     /** Ordered list container - rendered as <ol> */
@@ -156,6 +162,8 @@ enum TRichTextXMLNodes {
     Anchor = 'a',
     /** Paragraph - rendered as <p> */
     Paragraph = 'p',
+    /** Inline code - rendered as <code> */
+    Code = 'code',
 
 }
 
@@ -191,6 +199,12 @@ function traverseXMLTree(node: Node | null): React.ReactNode {
             return <h1>{processChildren(node)}</h1>;
         case TRichTextXMLNodes.Header2:
             return <h2>{processChildren(node)}</h2>;
+        case TRichTextXMLNodes.Header3:
+            return <h3>{processChildren(node)}</h3>;
+        case TRichTextXMLNodes.Header4:
+            return <h4>{processChildren(node)}</h4>;
+        case TRichTextXMLNodes.Header5:
+            return <h5>{processChildren(node)}</h5>;
         case TRichTextXMLNodes.UnorderedList:
             return <ul>{processChildren(node)}</ul>;
         case TRichTextXMLNodes.OrderedList:
@@ -215,6 +229,8 @@ function traverseXMLTree(node: Node | null): React.ReactNode {
             return <a href={(node as Element).getAttribute('href') ?? ''}>{processChildren(node)}</a>;
         case TRichTextXMLNodes.Paragraph:
             return <p>{processChildren(node)}</p>;
+        case TRichTextXMLNodes.Code:
+            return <code>{processChildren(node)}</code>;
         default:
             // For unknown nodes (like Document), just process children
             if (node.childNodes.length > 0) {
@@ -225,69 +241,4 @@ function traverseXMLTree(node: Node | null): React.ReactNode {
 }
 
 
-const EXAMPLE_MARKDOWN = `# Welcome to Markdown Parser
 
-## Text Formatting
-
-This is a paragraph with **bold text**, *italic text*, and ~~strikethrough text~~.
-
-You can also combine them: ***bold and italic*** or **~~bold strikethrough~~**.
-
-## Lists
-
-### Unordered List
-- First item
-- Second item
-- Third item
-
-### Ordered List
-1. Step one
-2. Step two
-3. Step three
-
-## Links
-
-Check out [Google](https://google.com) or [GitHub](https://github.com).
-
-## Tables
-
-| Name | Age | City |
-|------|-----|------|
-| Alice | 25 | NYC |
-| Bob | 30 | LA |
-| Charlie | 35 | Chicago |
-`;
-
-/**
- * Example component demonstrating the Markdown parser capabilities.
- * 
- * Renders a preview panel showing various markdown features including:
- * - Headers (h1, h2)
- * - Text formatting (bold, italic, strikethrough, combinations)
- * - Unordered and ordered lists
- * - Hyperlinks
- * - Tables with headers and data rows
- * 
- * @returns A styled container with the rendered markdown example
- * 
- * @example
- * ```tsx
- * // In your app:
- * <MarkdownExample />
- * ```
- */
-export const MarkdownExample = () => {
-    return (
-        <div style={{ padding: '20px', maxWidth: '800px' }}>
-            <h3 style={{ marginBottom: '16px', color: '#666' }}>Markdown Preview:</h3>
-            <div style={{
-                border: '1px solid #ddd',
-                borderRadius: '8px',
-                padding: '20px',
-                backgroundColor: '#fafafa'
-            }}>
-                <Markdown text={EXAMPLE_MARKDOWN} />
-            </div>
-        </div>
-    );
-};

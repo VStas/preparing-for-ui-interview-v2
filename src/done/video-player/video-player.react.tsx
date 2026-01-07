@@ -131,4 +131,4 @@ export const VideoPlayerComponent = () => {
     );
 };
 
-export const VideoPlayerExample = () => <VideoPlayerComponent />;
+

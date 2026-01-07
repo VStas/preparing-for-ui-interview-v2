@@ -1,4 +1,5 @@
 /* Minimal CSS Reset */
+
 /* Box sizing rules */
 *,
 *::before,
@@ -31,6 +32,7 @@ body,
 }
 
 body {
+  font-family: 'Roboto', sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;

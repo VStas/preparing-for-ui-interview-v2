@@ -1,7 +1,7 @@
 import css from './gallery.module.css';
 import flex from '../../utilities/flex.module.css';
 import { cx } from '../../utilities/utility';
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 type TGalleryProps = {
     images: string[];
@@ -92,18 +92,4 @@ export const Gallery = ({ images }: TGalleryProps) => {
     );
 };
 
-const MOCK_IMAGES: string[] = [
-    'https://picsum.photos/800/600?random=1',
-    'https://picsum.photos/800/600?random=2',
-    'https://picsum.photos/800/600?random=3',
-    'https://picsum.photos/800/600?random=4',
-    'https://picsum.photos/800/600?random=5',
-    'https://picsum.photos/800/600?random=6',
-    'https://picsum.photos/800/600?random=7',
-    'https://picsum.photos/800/600?random=8',
-    'https://picsum.photos/800/600?random=9',
-];
 
-export const GalleryExample = () => {
-    return <Gallery images={MOCK_IMAGES} />;
-};

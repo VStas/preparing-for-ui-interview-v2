@@ -131,3 +131,15 @@ declare module '*.jpg' {
     const content: string;
     export default content;
 }
+
+// Markdown files (raw imports)
+declare module '*.md?raw' {
+    const content: string;
+    export default content;
+}
+
+// Markdown files (direct imports)
+declare module '*.md' {
+    const content: string;
+    export default content;
+}

@@ -123,8 +123,4 @@ export const UploadComponent = () => {
     );
 };
 
-export const UploadComponentExample = () => {
-    return (
-        <UploadComponent />
-    );
-};
+

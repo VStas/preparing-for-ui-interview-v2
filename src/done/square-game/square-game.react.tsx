@@ -48,10 +48,4 @@ export const SquareGame = () => {
     );
 };
 
-export const SquareGameExample = () => {
-    return (
-        <div>
-            <SquareGame />
-        </div>
-    );
-};
+

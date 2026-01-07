@@ -429,4 +429,4 @@ export const InfiniteCanvas = () => {
     );
 };
 
-export const InfiniteCanvasExample = () => <InfiniteCanvas />;
+

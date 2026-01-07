@@ -82,6 +82,51 @@ Bun.serve({
             }
         }
 
+        // GET /api/problem/:problemId - Serve problem markdown file
+        if (url.pathname.startsWith("/api/problem/") && req.method === "GET") {
+            const problemId = url.pathname.replace("/api/problem/", "");
+
+            // Map problemId to folder path
+            const folderMap: Record<string, string> = {
+                toast: "toast",
+                checkbox: "nested-checkboxes",
+                accordion: "accordion",
+                tabs: "tabs",
+                tooltip: "tooltip",
+                table: "table",
+                markdown: "markdown",
+                squareGame: "square-game",
+                progressBar: "progress-bar",
+                uploadComponent: "upload-component",
+                infiniteCanvas: "infinite-canvas",
+                gallery: "gallery",
+                gptChat: "gpt-chat",
+                heatmap: "heatmap",
+                heatmapCanvas: "heatmap-canvas",
+                redditThread: "reddit-thread",
+                starRating: "star-rating",
+                videoPlayer: "video-player",
+            };
+
+            const folder = folderMap[problemId];
+            if (!folder) {
+                return new Response("Problem not found", { status: 404, headers });
+            }
+
+            try {
+                const file = Bun.file(`./src/done/${folder}/problem.md`);
+                const content = await file.text();
+                return new Response(content, {
+                    headers: {
+                        ...headers,
+                        "Content-Type": "text/plain; charset=utf-8",
+                    },
+                });
+            } catch {
+                return new Response("Problem file not found", { status: 404, headers });
+            }
+        }
+
         return new Response("Not Found", { status: 404, headers });
     },
 });

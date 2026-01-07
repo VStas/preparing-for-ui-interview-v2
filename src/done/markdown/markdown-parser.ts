@@ -152,9 +152,9 @@ const LINK_RULE = new TRichTextRule('link', [
  */
 const HEADER_RULE = new TRichTextRule('header', [
     new TRichTextPattern(/^#{6}\s?([^\n]+)/gm, '<p>$1</p>'),
-    new TRichTextPattern(/^#{5}\s?([^\n]+)/gm, '<p>$1</p>'),
-    new TRichTextPattern(/^#{4}\s?([^\n]+)/gm, '<p>$1</p>'),
-    new TRichTextPattern(/^#{3}\s?([^\n]+)/gm, '<p>$1</p>'),
+    new TRichTextPattern(/^#{5}\s?([^\n]+)/gm, '<h5>$1</h5>'),
+    new TRichTextPattern(/^#{4}\s?([^\n]+)/gm, '<h4>$1</h4>'),
+    new TRichTextPattern(/^#{3}\s?([^\n]+)/gm, '<h3>$1</h3>'),
     new TRichTextPattern(/^#{2}\s?([^\n]+)/gm, `<h2>$1</h2>`),
     new TRichTextPattern(/^#{1}\s?([^\n]+)/gm, `<h1>$1</h1>`),
 ]);
@@ -285,6 +285,18 @@ const STRIKETHROUGH_RULE = new TRichTextRule('strikethrough', [
 ]);
 
 /**
+ * Rule for converting Markdown inline code to HTML.
+ * Matches: Text wrapped in single backticks `text`.
+ * Outputs: `<code>text</code>` HTML element.
+ * @example
+ * // Input:  `inline code`
+ * // Output: <code>inline code</code>
+ */
+const CODE_RULE = new TRichTextRule('code', [
+    new TRichTextPattern(/`([^`]+)`/g, '<code>$1</code>'),
+]);
+
+/**
  * Complete set of Markdown-to-HTML transformation rules.
  * **ORDER MATTERS!** Rules are executed from top to bottom.
  * Each rule receives the modified HTML string from previous rules.
@@ -309,6 +321,7 @@ export const RICH_TEXT_RULES: Array<TRichTextRule> = [
     MIXED_TEXT_RULE,
     PARAGRAPH_RULE,
     MIXED_TEXT_RULE,
+    CODE_RULE,
     BOLD_RULE,
     ITALIC_RULE,
     STRIKETHROUGH_RULE,

@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import css from "./star-rating.module.css";
 import flex from "../../utilities/flex.module.css";
 import { cx } from "../../utilities/utility";
@@ -61,26 +61,4 @@ export const StarRatingComponent = ({ readonly, value, onChange }: TStarRatingPr
     );
 };
 
-export const StarRatingExample = () => {
-    const [rating, setRating] = useState(0);
 
-    return (
-        <div className={flex.flexColumnGap24}>
-            <div className={flex.flexColumnGap8}>
-                <h3>Interactive Rating</h3>
-                <StarRatingComponent value={rating} onChange={setRating} />
-                <p>Current Value: {rating}</p>
-            </div>
-
-            <div className={flex.flexColumnGap8}>
-                <h3>Readonly (3 Stars)</h3>
-                <StarRatingComponent readonly value={3} onChange={() => { }} />
-            </div>
-
-            <div className={flex.flexColumnGap8}>
-                <h3>Readonly (5 Stars)</h3>
-                <StarRatingComponent readonly value={5} onChange={() => { }} />
-            </div>
-        </div>
-    );
-};
