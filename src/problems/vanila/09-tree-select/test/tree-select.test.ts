@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'bun:test'
-import { renderTreeSelect } from '../tree-select'
+import { renderTreeSelect } from '../solution/tree-select'
 
 describe('renderTreeSelect', () => {
   describe('basic tree rendering', () => {

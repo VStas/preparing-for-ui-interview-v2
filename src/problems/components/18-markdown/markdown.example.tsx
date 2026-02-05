@@ -1,4 +1,5 @@
-import { Markdown } from './markdown.react'
+import { Markdown } from './solution/markdown.react'
+import { Markdown as MarkdownStudent } from './markdown.react'
 
 const EXAMPLE_MARKDOWN = `# Welcome to Markdown Parser
 
@@ -67,4 +68,7 @@ export const MarkdownExample = () => {
       </div>
     </div>
   )
+}
+export const MarkdownStudentExample = () => {
+  return <MarkdownStudent />
 }

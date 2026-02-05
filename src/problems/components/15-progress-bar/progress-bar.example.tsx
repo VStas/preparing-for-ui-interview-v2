@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
-import { ProgressBar } from './progress-bar.react'
-import { ProgressBar as VanillaProgressBar } from './progress-bar.vanila'
+import { ProgressBar as ProgressBarStudent } from './progress-bar.react'
+import { ProgressBar as ProgressBarVanilaStudent } from './progress-bar.vanila'
+import { ProgressBar } from './solution/progress-bar.react'
+import { ProgressBar as VanillaProgressBar } from './solution/progress-bar.vanila'
 
 /**
  * Example component demonstrating the ProgressBar with animation.
@@ -94,4 +96,10 @@ export const ProgressBarVanillaExample = () => {
       </button>
     </div>
   )
+}
+export const ProgressBarStudentExample = () => {
+  return <ProgressBarStudent />
+}
+export const ProgressBarStudentVanillaExample = () => {
+  return <div>Student Vanilla: TODO implement wrapper</div>
 }

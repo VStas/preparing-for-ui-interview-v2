@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'bun:test'
-import { MyPromise } from '../promise'
+import { MyPromise } from '../solution/promise'
 
 describe('MyPromise', () => {
   describe('structure', () => {

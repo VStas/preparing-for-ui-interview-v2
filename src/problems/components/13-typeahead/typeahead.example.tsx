@@ -1,5 +1,6 @@
-import { Typeahead } from './typeahead.react'
-import { Typeahead as VanillaTypeahead } from './typeahead.vanila'
+import { Typeahead } from './solution/typeahead.react'
+import { Typeahead as TypeaheadStudent } from './typeahead.react'
+import { Typeahead as VanillaTypeahead } from './solution/typeahead.vanila'
 import { useEffect, useRef } from 'react'
 
 const handleQuery = async (query: string) => {
@@ -46,4 +47,7 @@ export const TypeaheadVanillaExample = () => {
   }, [])
 
   return <div ref={rootRef} style={{ padding: 20, maxWidth: 400 }} />
+}
+export const TypeaheadStudentExample = () => {
+  return <TypeaheadStudent />
 }

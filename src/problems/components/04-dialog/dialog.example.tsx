@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
-import { Dialog } from './dialog.react'
-import { Dialog as VanillaDialog } from './dialog.vanila'
+import { Dialog as DialogStudent } from './dialog.react'
+import { Dialog } from './solution/dialog.react'
+import { Dialog as VanillaDialog } from './solution/dialog.vanila'
 
 export function DialogExample() {
   const [open, setOpen] = useState(false)
@@ -51,4 +52,7 @@ export function DialogVanillaExample() {
       <div ref={rootRef}></div>
     </div>
   )
+}
+export const DialogStudentExample = () => {
+  return <DialogStudent />
 }

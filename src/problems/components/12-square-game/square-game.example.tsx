@@ -1,5 +1,6 @@
-import { SquareGame } from './square-game.react'
-import { GameOfThree } from './square-game.vanila'
+import { SquareGame } from './solution/square-game.react'
+import { SquareGame as SquareGameStudent } from './square-game.react'
+import { GameOfThree } from './solution/square-game.vanila'
 import { useEffect, useRef } from 'react'
 
 export const SquareGameExample = () => {
@@ -26,4 +27,7 @@ export const SquareGameVanillaExample = () => {
   }, [])
 
   return <div ref={rootRef} />
+}
+export const SquareGameStudentExample = () => {
+  return <SquareGameStudent />
 }

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'bun:test'
-import { myExtends } from '../es5-extends'
+import { myExtends } from '../solution/es5-extends'
 
 describe('myExtends', () => {
   // Test fixtures

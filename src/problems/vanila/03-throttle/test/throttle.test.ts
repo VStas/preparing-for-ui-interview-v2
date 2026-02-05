@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'bun:test'
-import { throttle } from '../throttle'
+import { throttle } from '../solution/throttle'
 
 describe('throttle', () => {
   it('should return a function', () => {

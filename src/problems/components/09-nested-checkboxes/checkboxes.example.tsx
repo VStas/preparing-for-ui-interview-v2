@@ -1,5 +1,7 @@
-import { CheckboxTree, type TCheckboxItem } from './checkboxes.react'
-import { CheckboxTree as CheckboxTreeVanilla } from './checkboxes.vanila'
+import { CheckboxTree, type TCheckboxItem } from './solution/checkboxes.react'
+import { Checkboxes as CheckboxesStudent } from './checkboxes.react'
+import { Checkboxes as CheckboxesVanilaStudent } from './checkboxes.vanila'
+import { CheckboxTree as CheckboxTreeVanilla } from './solution/checkboxes.vanila'
 import { useEffect, useRef } from 'react'
 
 const MOCK_DATA: TCheckboxItem[] = [
@@ -55,4 +57,10 @@ export const CheckboxTreeVanillaExample = () => {
   }, [])
 
   return <div ref={rootRef}></div>
+}
+export const CheckboxesStudentExample = () => {
+  return <CheckboxesStudent />
+}
+export const CheckboxesStudentVanillaExample = () => {
+  return <div>Student Vanilla: TODO implement wrapper</div>
 }

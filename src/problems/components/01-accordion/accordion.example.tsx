@@ -1,5 +1,7 @@
-import { Accordion, type TAccordionItem } from './accordion.react'
-import { Accordion as AccordionVanilla } from './accordion.vanila'
+import { Accordion, type TAccordionItem } from './solution/accordion.react'
+import { Accordion as AccordionStudent } from './accordion.react'
+import { Accordion as AccordionVanilaStudent } from './accordion.vanila'
+import { Accordion as AccordionVanilla } from './solution/accordion.vanila'
 import { useEffect, useRef } from 'react'
 
 const MOCK_DATA: TAccordionItem[] = [
@@ -48,4 +50,10 @@ export const AccordionVanillaExample = () => {
   }, [])
 
   return <div ref={rootRef}></div>
+}
+export const AccordionStudentExample = () => {
+  return <AccordionStudent />
+}
+export const AccordionStudentVanillaExample = () => {
+  return <div>Student Vanilla: TODO implement wrapper</div>
 }

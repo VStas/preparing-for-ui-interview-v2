@@ -1,16 +1,2 @@
-.table {
-  width: 100%;
-  border-collapse: collapse;
-}
+/* Student solution styles */
 
-.table thead tr {
-  background-color: #e0e0e0;
-}
-
-.table tbody tr {
-  background-color: #f5f5f5;
-}
-
-.table tbody tr:nth-child(even) {
-  background-color: #ffffff;
-}

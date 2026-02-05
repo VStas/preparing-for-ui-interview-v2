@@ -1,6 +1,6 @@
 /* eslint-disable no-sparse-arrays */
 import { describe, it, expect } from 'bun:test'
-import { deepEquals } from '../deep-equals'
+import { deepEquals } from '../solution/deep-equals'
 
 describe('deepEquals', () => {
   describe('primitive values', () => {

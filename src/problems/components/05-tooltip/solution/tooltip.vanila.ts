@@ -1,4 +1,4 @@
-import { AbstractComponent, type TComponentConfig } from '../00-abstract-component/component'
+import { AbstractComponent, type TComponentConfig } from '../../00-abstract-component/component'
 import css from './tooltip.module.css'
 
 type TTooltipProps = {

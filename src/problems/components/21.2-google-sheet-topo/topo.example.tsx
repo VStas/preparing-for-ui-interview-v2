@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { affectedFrom, topoSort } from './topo'
+import { affectedFrom, topoSort } from './solution/topo'
 import css from './topo.module.css'
 import styles from '@course/styles'
 import cx from '@course/cx'

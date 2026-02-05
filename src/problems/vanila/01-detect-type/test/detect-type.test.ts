@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'bun:test'
-import { detectType } from '../detect-type'
+import { detectType } from '../solution/detect-type'
 
 describe('detectType', () => {
   describe('null and undefined', () => {

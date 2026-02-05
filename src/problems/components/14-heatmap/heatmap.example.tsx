@@ -1,5 +1,7 @@
-import { Heatmap, type HeatmapRef } from './heatmap.react'
-import { Heatmap as VanillaHeatmap } from './heatmap.vanila'
+import { Heatmap, type HeatmapRef } from './solution/heatmap.react'
+import { Heatmap as HeatmapStudent } from './heatmap.react'
+import { Heatmap as HeatmapVanilaStudent } from './heatmap.vanila'
+import { Heatmap as VanillaHeatmap } from './solution/heatmap.vanila'
 import { useEffect, useRef, useState, useCallback } from 'react'
 
 const getRandomPoint = (size: number) => ({
@@ -113,4 +115,10 @@ export const HeatmapVanillaExample = () => {
       </div>
     </div>
   )
+}
+export const HeatmapStudentExample = () => {
+  return <HeatmapStudent />
+}
+export const HeatmapStudentVanillaExample = () => {
+  return <div>Student Vanilla: TODO implement wrapper</div>
 }

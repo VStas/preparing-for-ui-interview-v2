@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { TableEngine } from './table-engine'
+import { TableEngine } from './solution/table-engine'
 import css from './table-engine.module.css'
 import styles from '@course/styles'
 import cx from '@course/cx'

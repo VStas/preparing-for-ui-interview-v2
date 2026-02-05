@@ -1,6 +1,8 @@
 import { useRef, useEffect } from 'react'
-import { PortfolioVisualizer, type TPortfolioNode } from './portfolio-visualizer.react'
-import { PortfolioVisualizer as VanillaPortfolioVisualizer } from './portfolio-visualizer.vanila'
+import { PortfolioVisualizer as PortfolioVisualizerStudent } from './portfolio-visualizer.react'
+import { PortfolioVisualizer, type TPortfolioNode } from './solution/portfolio-visualizer.react'
+import { PortfolioVisualizer as VanillaPortfolioVisualizer } from './solution/portfolio-visualizer.vanila'
+import { PortfolioVisualizer as StudentVanillaPortfolioVisualizer } from './portfolio-visualizer.vanila'
 
 const SAMPLE_DATA: TPortfolioNode = {
   id: 'portfolio',
@@ -87,3 +89,24 @@ export function PortfolioVisualizerVanillaExample() {
 
   return <div ref={rootRef}></div>
 }
+export const PortfolioVisualizerStudentExample = () => {
+  return <PortfolioVisualizerStudent />
+}
+
+export function PortfolioVisualizerStudentVanillaExample() {
+  const rootRef = useRef<HTMLDivElement>(null)
+  const componentRef = useRef<StudentVanillaPortfolioVisualizer | null>(null)
+
+  useEffect(() => {
+    if (!rootRef.current) return
+    componentRef.current = new StudentVanillaPortfolioVisualizer({
+      root: rootRef.current,
+      data: SAMPLE_DATA,
+    })
+    if (componentRef.current.render) componentRef.current.render()
+    return () => { componentRef.current?.destroy?.(); componentRef.current = null }
+  }, [])
+
+  return <div ref={rootRef}></div>
+}
+

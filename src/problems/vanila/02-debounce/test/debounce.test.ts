@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'bun:test'
-import { debounce } from '../debounce'
+import { debounce } from '../solution/debounce'
 
 describe('debounce', () => {
   it('should return a function', () => {

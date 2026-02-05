@@ -1,6 +1,8 @@
 import { useRef, useEffect } from 'react'
-import { RedditThreadComponent, type IRedditComment } from './reddit-thread.react'
-import { RedditThread as VanillaRedditThread } from './reddit-thread.vanila'
+import { RedditThread as RedditThreadStudent } from './reddit-thread.react'
+import { RedditThread as RedditThreadVanilaStudent } from './reddit-thread.vanila'
+import { RedditThreadComponent, type IRedditComment } from './solution/reddit-thread.react'
+import { RedditThread as VanillaRedditThread } from './solution/reddit-thread.vanila'
 
 const MOCK_COMMENTS: IRedditComment[] = [
   {
@@ -83,4 +85,10 @@ export function RedditThreadVanillaExample() {
   }, [])
 
   return <div ref={rootRef}></div>
+}
+export const RedditThreadStudentExample = () => {
+  return <RedditThreadStudent />
+}
+export const RedditThreadStudentVanillaExample = () => {
+  return <div>Student Vanilla: TODO implement wrapper</div>
 }

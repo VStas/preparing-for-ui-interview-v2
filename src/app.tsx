@@ -1,72 +1,115 @@
 import './reset.css'
 import css from './app.module.css'
 import { useState, useMemo } from 'react'
-import { ToastExample, ToastVanillaExample } from './problems/components/10-toast/toast.example'
-import './problems/components/10-toast/toast.animations.css' // Global keyframes
+import {
+  ToastExample,
+  ToastVanillaExample,
+  ToastStudentExample,
+  ToastStudentVanillaExample,
+} from './problems/components/10-toast/toast.example'
+import './problems/components/10-toast/solution/toast.animations.css' // Global keyframes
 
 import {
   CheckboxTreeExample,
   CheckboxTreeVanillaExample,
+  CheckboxesStudentExample,
+  CheckboxesStudentVanillaExample,
 } from './problems/components/09-nested-checkboxes/checkboxes.example'
 import {
   AccordionExample,
   AccordionVanillaExample,
+  AccordionStudentExample,
+  AccordionStudentVanillaExample,
 } from './problems/components/01-accordion/accordion.example'
-import { TabsExample, TabsVanillaExample } from './problems/components/03-tabs/tabs.example'
+import {
+  TabsExample,
+  TabsVanillaExample,
+  TabsStudentExample,
+  TabsStudentVanillaExample, // Verified export exists
+} from './problems/components/03-tabs/tabs.example'
 import {
   TooltipExample,
   TooltipVanillaExample,
+  TooltipStudentExample,
 } from './problems/components/05-tooltip/tooltip.example'
-import { TableExample, TableVanillaExample } from './problems/components/06-table/table.example'
+import {
+  TableExample,
+  TableVanillaExample,
+  TableStudentExample,
+  TableStudentVanillaExample, // Verified export exists
+} from './problems/components/06-table/table.example'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { MarkdownExample } from './problems/components/18-markdown/markdown.example'
+import { MarkdownExample, MarkdownStudentExample } from './problems/components/18-markdown/markdown.example'
 import {
   ProgressBarExample,
   ProgressBarVanillaExample,
+  ProgressBarStudentExample,
+  ProgressBarStudentVanillaExample,
 } from './problems/components/15-progress-bar/progress-bar.example'
 import {
   SquareGameExample,
   SquareGameVanillaExample,
+  SquareGameStudentExample,
 } from './problems/components/12-square-game/square-game.example'
-import { UploadComponentExample } from './problems/components/16-upload-component/upload-component.example'
-import { InfiniteCanvasExample } from './problems/components/20-infinite-canvas/infinite-canvas.example'
+import { UploadComponentExample, UploadComponentStudentExample } from './problems/components/16-upload-component/upload-component.example'
+import {
+  InfiniteCanvasExample,
+  InfiniteCanvasStudentExample,
+  // InfiniteCanvasStudentVanillaExample - Not implemented
+} from './problems/components/20-infinite-canvas/infinite-canvas.example'
 import {
   GalleryExample,
   GalleryVanillaExample,
+  GalleryStudentExample,
+  GalleryStudentVanillaExample,
 } from './problems/components/08-gallery/gallery.example'
 import {
   GPTComponentExample,
   GPTChatVanillaExample,
+  GptChatStudentExample,
+  GptChatStudentVanillaExample,
 } from './problems/components/19-gpt-chat/gpt-chat.example'
 import {
   HeatmapExample,
   HeatmapVanillaExample,
+  HeatmapStudentExample,
+  HeatmapStudentVanillaExample,
 } from './problems/components/14-heatmap/heatmap.example'
 import {
   RedditThreadExample,
   RedditThreadVanillaExample,
+  RedditThreadStudentExample,
+  RedditThreadStudentVanillaExample,
 } from './problems/components/07-reddit-thread/reddit-thread.example'
 import {
   StarRatingExample,
   StarRatingVanillaExample,
+  StarRatingStudentExample,
 } from './problems/components/02-star-rating/star-rating.example'
 import {
   CalculatorExample,
   CalculatorVanillaExample,
+  CalculatorStudentExample,
+  CalculatorStudentVanillaExample,
 } from './problems/components/11-calculator/calculator.example'
 import {
   TypeaheadExample,
   TypeaheadVanillaExample,
+  TypeaheadStudentExample,
 } from './problems/components/13-typeahead/typeahead.example'
-import { DialogExample, DialogVanillaExample } from './problems/components/04-dialog/dialog.example'
+import { DialogExample, DialogVanillaExample, DialogStudentExample } from './problems/components/04-dialog/dialog.example'
 import {
   PortfolioVisualizerExample,
   PortfolioVisualizerVanillaExample,
+  PortfolioVisualizerStudentExample,
+  PortfolioVisualizerStudentVanillaExample,
 } from './problems/components/17-portfolio-visualizer/portfolio-visualizer.example'
 import {
   GoogleSheetExample,
   GoogleSheetVanillaExample,
+  GoogleSheetStudentExample,
+  GoogleSheetStudentVanillaExample,
 } from './problems/components/21.4-google-sheet-ux/google-sheet.example'
 import { ParserExample } from './problems/components/21.1-google-sheet-parser/parser.example'
 import { TopoExample } from './problems/components/21.2-google-sheet-topo/topo.example'
@@ -269,7 +312,7 @@ const createProblemOverview = (markdownContent: string) => {
 const createTsCode = (code: string) => `\`\`\`typescript\n${code}\n\`\`\``
 
 type TDifficulty = 'warm-up' | 'easy' | 'medium' | 'hard' | 'extreme'
-type TVariantType = 'overview' | 'react' | 'vanilla' | 'example'
+type TVariantType = 'overview' | 'react' | 'vanilla' | 'studentReact' | 'studentVanilla' | 'example'
 
 type TVariant = {
   component: React.ComponentType
@@ -371,6 +414,8 @@ const SECTIONS = {
           overview: { component: createProblemOverview(accordionProblem) },
           react: { component: AccordionExample },
           vanilla: { component: AccordionVanillaExample },
+          studentReact: { component: AccordionStudentExample },
+          studentVanilla: { component: AccordionStudentVanillaExample },
         },
       },
       starRating: {
@@ -381,6 +426,7 @@ const SECTIONS = {
           overview: { component: createProblemOverview(starRatingProblem) },
           react: { component: StarRatingExample },
           vanilla: { component: StarRatingVanillaExample },
+          studentReact: { component: StarRatingStudentExample },
         },
       },
       tabs: {
@@ -391,6 +437,8 @@ const SECTIONS = {
           overview: { component: createProblemOverview(tabsProblem) },
           react: { component: TabsExample },
           vanilla: { component: TabsVanillaExample },
+          studentReact: { component: TabsStudentExample },
+          studentVanilla: { component: TabsStudentVanillaExample },
         },
       },
       tooltip: {
@@ -401,6 +449,7 @@ const SECTIONS = {
           overview: { component: createProblemOverview(tooltipProblem) },
           react: { component: TooltipExample },
           vanilla: { component: TooltipVanillaExample },
+          studentReact: { component: TooltipStudentExample },
         },
       },
       dialog: {
@@ -411,6 +460,7 @@ const SECTIONS = {
           overview: { component: createProblemOverview(dialogProblem) },
           react: { component: DialogExample },
           vanilla: { component: DialogVanillaExample },
+          studentReact: { component: DialogStudentExample },
         },
       },
       table: {
@@ -421,6 +471,8 @@ const SECTIONS = {
           overview: { component: createProblemOverview(tableProblem) },
           react: { component: TableExample },
           vanilla: { component: TableVanillaExample },
+          studentReact: { component: TableStudentExample },
+          studentVanilla: { component: TableStudentVanillaExample },
         },
       },
       redditThread: {
@@ -431,6 +483,8 @@ const SECTIONS = {
           overview: { component: createProblemOverview(redditThreadProblem) },
           react: { component: RedditThreadExample },
           vanilla: { component: RedditThreadVanillaExample },
+          studentReact: { component: RedditThreadStudentExample },
+          studentVanilla: { component: RedditThreadStudentVanillaExample },
         },
       },
       gallery: {
@@ -441,6 +495,8 @@ const SECTIONS = {
           overview: { component: createProblemOverview(galleryProblem) },
           react: { component: GalleryExample },
           vanilla: { component: GalleryVanillaExample },
+          studentReact: { component: GalleryStudentExample },
+          studentVanilla: { component: GalleryStudentVanillaExample },
         },
       },
       checkbox: {
@@ -451,6 +507,8 @@ const SECTIONS = {
           overview: { component: createProblemOverview(checkboxProblem) },
           react: { component: CheckboxTreeExample },
           vanilla: { component: CheckboxTreeVanillaExample },
+          studentReact: { component: CheckboxesStudentExample },
+          studentVanilla: { component: CheckboxesStudentVanillaExample },
         },
       },
       toast: {
@@ -461,6 +519,8 @@ const SECTIONS = {
           overview: { component: createProblemOverview(toastProblem) },
           react: { component: ToastExample },
           vanilla: { component: ToastVanillaExample },
+          studentReact: { component: ToastStudentExample },
+          studentVanilla: { component: ToastStudentVanillaExample },
         },
       },
       calculator: {
@@ -471,6 +531,8 @@ const SECTIONS = {
           overview: { component: createProblemOverview(calculatorProblem) },
           react: { component: CalculatorExample },
           vanilla: { component: CalculatorVanillaExample },
+          studentReact: { component: CalculatorStudentExample },
+          studentVanilla: { component: CalculatorStudentVanillaExample },
         },
       },
       squareGame: {
@@ -481,6 +543,7 @@ const SECTIONS = {
           overview: { component: createProblemOverview(squareGameProblem) },
           react: { component: SquareGameExample },
           vanilla: { component: SquareGameVanillaExample },
+          studentReact: { component: SquareGameStudentExample },
         },
       },
       typeahead: {
@@ -491,6 +554,7 @@ const SECTIONS = {
           overview: { component: createProblemOverview(typeaheadProblem) },
           react: { component: TypeaheadExample },
           vanilla: { component: TypeaheadVanillaExample },
+          studentReact: { component: TypeaheadStudentExample },
         },
       },
       heatmap: {
@@ -501,6 +565,8 @@ const SECTIONS = {
           overview: { component: createProblemOverview(heatmapProblem) },
           react: { component: HeatmapExample },
           vanilla: { component: HeatmapVanillaExample },
+          studentReact: { component: HeatmapStudentExample },
+          studentVanilla: { component: HeatmapStudentVanillaExample },
         },
       },
       progressBar: {
@@ -511,6 +577,8 @@ const SECTIONS = {
           overview: { component: createProblemOverview(progressBarProblem) },
           react: { component: ProgressBarExample },
           vanilla: { component: ProgressBarVanillaExample },
+          studentReact: { component: ProgressBarStudentExample },
+          studentVanilla: { component: ProgressBarStudentVanillaExample },
         },
       },
       uploadComponent: {
@@ -520,6 +588,7 @@ const SECTIONS = {
         variants: {
           overview: { component: createProblemOverview(uploadComponentProblem) },
           react: { component: UploadComponentExample },
+          studentReact: { component: UploadComponentStudentExample },
         },
       },
       portfolioVisualizer: {
@@ -530,6 +599,8 @@ const SECTIONS = {
           overview: { component: createProblemOverview(portfolioVisualizerProblem) },
           react: { component: PortfolioVisualizerExample },
           vanilla: { component: PortfolioVisualizerVanillaExample },
+          studentReact: { component: PortfolioVisualizerStudentExample },
+          studentVanilla: { component: PortfolioVisualizerStudentVanillaExample },
         },
       },
       markdown: {
@@ -539,6 +610,7 @@ const SECTIONS = {
         variants: {
           overview: { component: createProblemOverview(markdownProblem) },
           react: { component: MarkdownExample },
+          studentReact: { component: MarkdownStudentExample },
         },
       },
       gptChat: {
@@ -549,6 +621,8 @@ const SECTIONS = {
           overview: { component: createProblemOverview(gptChatProblem) },
           react: { component: GPTComponentExample },
           vanilla: { component: GPTChatVanillaExample },
+          studentReact: { component: GptChatStudentExample },
+          studentVanilla: { component: GptChatStudentVanillaExample },
         },
       },
       infiniteCanvas: {
@@ -558,6 +632,7 @@ const SECTIONS = {
         variants: {
           overview: { component: createProblemOverview(infiniteCanvasProblem) },
           react: { component: InfiniteCanvasExample },
+          studentReact: { component: InfiniteCanvasStudentExample },
         },
       },
       googleSheetParser: {
@@ -595,6 +670,8 @@ const SECTIONS = {
           overview: { component: createProblemOverview(googleSheetProblem) },
           react: { component: GoogleSheetExample },
           vanilla: { component: GoogleSheetVanillaExample },
+          studentReact: { component: GoogleSheetStudentExample },
+          studentVanilla: { component: GoogleSheetStudentVanillaExample },
         },
       },
     } as Record<string, TProblem>,
@@ -1098,10 +1175,14 @@ export default function App() {
                                   {variant === 'overview'
                                     ? 'Problem Overview'
                                     : variant === 'react'
-                                      ? 'React'
-                                      : variant === 'example'
-                                        ? 'Example'
-                                        : 'Vanilla'}
+                                      ? 'Reference (React)'
+                                      : variant === 'vanilla'
+                                        ? 'Reference (Vanilla)'
+                                        : variant === 'studentReact'
+                                          ? 'Student (React)'
+                                          : variant === 'studentVanilla'
+                                            ? 'Student (Vanilla)'
+                                            : 'Example'}
                                 </button>
                               </li>
                             ))}

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'bun:test'
-import { deepClone } from '../deep-clone'
+import { deepClone } from '../solution/deep-clone'
 
 describe('deepClone', () => {
   describe('primitive values', () => {

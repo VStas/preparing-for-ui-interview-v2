@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'bun:test'
-import { stringify } from '../stringify'
+import { stringify } from '../solution/stringify'
 
 describe('stringify', () => {
   describe('primitives', () => {

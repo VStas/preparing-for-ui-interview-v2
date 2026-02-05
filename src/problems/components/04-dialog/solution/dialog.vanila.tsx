@@ -1,4 +1,4 @@
-import { AbstractComponent, type TComponentConfig } from '../00-abstract-component/component'
+import { AbstractComponent, type TComponentConfig } from '../../00-abstract-component/component'
 import css from './dialog.module.css'
 import styles from '@course/styles'
 import cx from '@course/cx'

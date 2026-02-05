@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react'
-import { Gallery } from './gallery.react'
-import { Gallery as VanillaGallery } from './gallery.vanila'
+import { Gallery as GalleryStudent } from './gallery.react'
+import { Gallery as GalleryVanilaStudent } from './gallery.vanila'
+import { Gallery } from './solution/gallery.react'
+import { Gallery as VanillaGallery } from './solution/gallery.vanila'
 
 const IMAGES = [
   'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb',
@@ -27,4 +29,10 @@ export const GalleryVanillaExample = () => {
   }, [])
 
   return <div ref={rootRef}></div>
+}
+export const GalleryStudentExample = () => {
+  return <GalleryStudent />
+}
+export const GalleryStudentVanillaExample = () => {
+  return <div>Student Vanilla: TODO implement wrapper</div>
 }

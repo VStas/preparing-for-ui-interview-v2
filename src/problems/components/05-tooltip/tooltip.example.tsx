@@ -1,5 +1,6 @@
-import { Tooltip } from './tooltip.react'
-import { Tooltip as VanillaTooltip } from './tooltip'
+import { Tooltip } from './solution/tooltip.react'
+import { Tooltip as TooltipStudent } from './tooltip.react'
+import { Tooltip as VanillaTooltip } from './solution/tooltip.vanila'
 import { useEffect, useRef } from 'react'
 import flex from '@course/styles'
 import cx from '@course/cx'
@@ -91,4 +92,7 @@ export function TooltipVanillaExample() {
       <div ref={bottomRef}></div>
     </div>
   )
+}
+export const TooltipStudentExample = () => {
+  return <TooltipStudent />
 }

@@ -1,7 +1,10 @@
 import { useState, useRef, useDeferredValue, useEffect, useMemo, useEffectEvent } from 'react'
-import { Table, type TTableColumn } from './table.react'
-import { Table as VanillaTable, type TTableColumn as TVanillaTableColumn } from './table.vanila'
-import { fetchStocks, type TPaginatedAPIResponse, type Stock } from './api'
+import { Table, type TTableColumn } from './solution/table.react'
+import { Table as VanillaTable, type TTableColumn as TVanillaTableColumn } from './solution/table.vanila'
+import { Table as StudentTable } from './table.react'
+import { Table as StudentVanillaTable } from './table.vanila'
+
+import { fetchStocks, type TPaginatedAPIResponse, type Stock } from './solution/api'
 
 const COLUMNS: TTableColumn<Stock>[] = [
   { id: 'symbol', name: 'Symbol', renderer: (s) => s.symbol },
@@ -54,16 +57,16 @@ const VANILLA_COLUMNS: TVanillaTableColumn<Stock>[] = [
 
 const defaultComparator =
   (columnId: keyof Stock, direction: 'asc' | 'desc') =>
-  (a: Stock, b: Stock): number => {
-    const modifier = direction === 'asc' ? 1 : -1
-    if (typeof a[columnId] === 'string' && typeof b[columnId] === 'string') {
-      return a[columnId].localeCompare(b[columnId]) * modifier
+    (a: Stock, b: Stock): number => {
+      const modifier = direction === 'asc' ? 1 : -1
+      if (typeof a[columnId] === 'string' && typeof b[columnId] === 'string') {
+        return a[columnId].localeCompare(b[columnId]) * modifier
+      }
+      if (typeof a[columnId] === 'number' && typeof b[columnId] === 'number') {
+        return (a[columnId] - b[columnId]) * modifier
+      }
+      return 0
     }
-    if (typeof a[columnId] === 'number' && typeof b[columnId] === 'number') {
-      return (a[columnId] - b[columnId]) * modifier
-    }
-    return 0
-  }
 
 function useStockTable<TCol extends { id: string; sort?: 'asc' | 'desc' | 'none' }>(
   initialColumns: TCol[],
@@ -110,10 +113,10 @@ function useStockTable<TCol extends { id: string; sort?: 'asc' | 'desc' | 'none'
     return !defferedQuery
       ? rows
       : rows.filter((d) =>
-          Object.values(d).some((v) =>
-            v.toString().toLowerCase().includes(defferedQuery.toLowerCase()),
-          ),
-        )
+        Object.values(d).some((v) =>
+          v.toString().toLowerCase().includes(defferedQuery.toLowerCase()),
+        ),
+      )
   }, [defferedQuery, rows])
 
   const sortedData = useMemo(() => {
@@ -191,6 +194,54 @@ export function TableVanillaExample() {
       })
     }
   }, [columns, data, page, totalPages])
+
+}
+
+export function TableStudentExample() {
+  const { columns, data, page, setPage, setQuery, setSortedColumn, totalPages } =
+    useStockTable(COLUMNS)
+
+  return (
+    <StudentTable
+      columns={columns}
+      data={data}
+      next={() => setPage((p) => p + 1)}
+      prev={() => setPage((p) => Math.max(0, p - 1))}
+      sort={setSortedColumn}
+      search={setQuery}
+      currentPage={page}
+      totalPages={totalPages}
+    />
+  )
+}
+
+export function TableStudentVanillaExample() {
+  const { columns, data, page, setPage, setQuery, setSortedColumn, totalPages } =
+    useStockTable(VANILLA_COLUMNS)
+  const rootRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!rootRef.current) return
+
+    // @ts-ignore - Student might not have implemented type yet
+    const table = new StudentVanillaTable({
+      root: rootRef.current,
+      columns,
+      data,
+      currentPage: page,
+      totalPages,
+      onNext: () => setPage((p) => p + 1),
+      onPrev: () => setPage((p) => Math.max(0, p - 1)),
+      onSearch: (q) => setQuery(q),
+      onSort: (id, dir) => setSortedColumn(id, dir),
+    })
+
+    if (table.render) table.render()
+
+    return () => {
+      if (table.destroy) table.destroy()
+    }
+  }, []) // Simplification: not updating on props change for student example placeholder
 
   return <div ref={rootRef}></div>
 }

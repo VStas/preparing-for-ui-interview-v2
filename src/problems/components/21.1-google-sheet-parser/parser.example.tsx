@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { tokenize, toRpn, type Token } from './parser'
+import { tokenize, toRpn, type Token } from './solution/parser'
 import css from './parser.module.css'
 import styles from '@course/styles'
 import cx from '@course/cx'

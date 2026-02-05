@@ -1,5 +1,7 @@
-import { GPTComponent } from './gpt-chat.react'
-import { GPTChat } from './gpt-chat.vanila'
+import { GPTComponent } from './solution/gpt-chat.react'
+import { GptChat as GptChatStudent } from './gpt-chat.react'
+import { GptChat as GptChatVanilaStudent } from './gpt-chat.vanila'
+import { GPTChat } from './solution/gpt-chat.vanila'
 import { useEffect, useRef } from 'react'
 
 export const GPTComponentExample = () => <GPTComponent />
@@ -20,4 +22,10 @@ export const GPTChatVanillaExample = () => {
   }, [])
 
   return <div ref={rootRef} />
+}
+export const GptChatStudentExample = () => {
+  return <GptChatStudent />
+}
+export const GptChatStudentVanillaExample = () => {
+  return <div>Student Vanilla: TODO implement wrapper</div>
 }

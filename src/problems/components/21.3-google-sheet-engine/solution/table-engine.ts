@@ -6,10 +6,10 @@ import {
   toRpn,
   type CellId,
   type Compiled,
-} from '../21.1-google-sheet-parser/parser'
-import { affectedFrom, topoSort } from '../21.2-google-sheet-topo/topo'
+} from '../../21.1-google-sheet-parser/solution/parser'
+import { affectedFrom, topoSort } from '../../21.2-google-sheet-topo/solution/topo'
 
-export type { CellId } from '../21.1-google-sheet-parser/parser'
+export type { CellId } from '../../21.1-google-sheet-parser/solution/parser'
 
 export class TableEngine {
   #raw: Map<CellId, string> = new Map()

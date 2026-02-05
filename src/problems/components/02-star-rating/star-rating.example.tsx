@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
+import { StarRating as StarRatingStudent } from './star-rating.react'
 import flex from '@course/styles'
-import { StarRatingComponent } from './star-rating.react'
-import { StarRating } from './star-rating'
+import { StarRatingComponent } from './solution/star-rating.react'
+import { StarRating } from './solution/star-rating.vanila'
 
 export const StarRatingExample = () => {
   const [rating, setRating] = useState(0)
@@ -96,4 +97,7 @@ export const StarRatingVanillaExample = () => {
       </div>
     </div>
   )
+}
+export const StarRatingStudentExample = () => {
+  return <StarRatingStudent />
 }

@@ -1,5 +1,7 @@
-import { useToast, ToastProvider } from './toast.react'
-import { Toast } from './toast.vanila'
+import { useToast, ToastProvider } from './solution/toast.react'
+import { Toast as ToastStudent } from './toast.react'
+import { Toast } from './solution/toast.vanila'
+import { Toast as StudentVanillaToast } from './toast.vanila'
 import { useEffect, useRef, type CSSProperties } from 'react'
 
 let id = 0
@@ -76,6 +78,30 @@ export function ToastVanillaExample() {
         }}
       >
         Show Vanilla Toast
+      </button>
+    </>
+  )
+}
+export const ToastStudentExample = () => {
+  return <ToastStudent />
+}
+
+export function ToastStudentVanillaExample() {
+  const toastContainerRef = useRef<HTMLDivElement>(null)
+  const toastRef = useRef<StudentVanillaToast | null>(null)
+
+  useEffect(() => {
+    if (!toastContainerRef.current) return
+    toastRef.current = new StudentVanillaToast({ root: toastContainerRef.current })
+    if (toastRef.current.render) toastRef.current.render()
+    return () => { toastRef.current?.destroy?.(); toastRef.current = null }
+  }, [])
+
+  return (
+    <>
+      <div ref={toastContainerRef} style={TOAST_CONTAINER_STYLES}></div>
+      <button onClick={() => toastRef.current?.toast?.({ id: '1', text: 'Student Toast' })}>
+        Show Student Vanilla Toast
       </button>
     </>
   )
