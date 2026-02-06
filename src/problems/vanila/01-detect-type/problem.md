@@ -14,7 +14,12 @@ Implement a `detectType` function that returns the type of any JavaScript value 
 ## Signature
 
 ```typescript
-function detectType(value: any): string
+type TType = 
+  | 'null' | 'undefined' | 'string' | 'number' | 'boolean' | 'symbol' | 'bigint' 
+  | 'object' | 'array' | 'function' | 'date' | 'regexp' | 'map' | 'set' 
+  | 'weakmap' | 'weakset' | 'error' | 'promise' | 'arraybuffer' | string
+
+function detectType(value: any): TType
 ```
 
 ## Examples

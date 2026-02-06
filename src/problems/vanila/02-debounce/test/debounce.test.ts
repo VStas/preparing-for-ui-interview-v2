@@ -1,65 +1,77 @@
 import { describe, it, expect } from 'bun:test'
-import { debounce } from '../solution/debounce'
+import { debounce as referenceSolution } from '../solution/debounce'
+import { debounce as studentSolution } from '../debounce.vanila'
 
-describe('debounce', () => {
-  it('should return a function', () => {
-    const debounced = debounce(() => {}, 100)
-    expect(typeof debounced).toBe('function')
-  })
+const implementations = [
+  { name: 'Reference', fn: referenceSolution },
+  { name: 'Student', fn: studentSolution },
+]
 
-  it('should delay execution', async () => {
-    let callCount = 0
-    const debounced = debounce(() => {
-      callCount++
-    }, 50)
+implementations.forEach(({ name, fn }) => {
+  const debounce = fn as typeof referenceSolution
 
-    debounced()
-    expect(callCount).toBe(0)
+  describe(`${name} Solution`, () => {
+    describe('debounce', () => {
+      it('should return a function', () => {
+        const debounced = debounce(() => { }, 100)
+        expect(typeof debounced).toBe('function')
+      })
 
-    await new Promise((r) => setTimeout(r, 100))
-    expect(callCount).toBe(1)
-  })
+      it('should delay execution', async () => {
+        let callCount = 0
+        const debounced = debounce(() => {
+          callCount++
+        }, 50)
 
-  it('should reset timer on subsequent calls', async () => {
-    let callCount = 0
-    const debounced = debounce(() => {
-      callCount++
-    }, 50)
+        debounced()
+        expect(callCount).toBe(0)
 
-    debounced()
-    await new Promise((r) => setTimeout(r, 30))
-    debounced() // Reset timer
-    await new Promise((r) => setTimeout(r, 30))
+        await new Promise((r) => setTimeout(r, 100))
+        expect(callCount).toBe(1)
+      })
 
-    expect(callCount).toBe(0) // Still waiting
+      it('should reset timer on subsequent calls', async () => {
+        let callCount = 0
+        const debounced = debounce(() => {
+          callCount++
+        }, 50)
 
-    await new Promise((r) => setTimeout(r, 50))
-    expect(callCount).toBe(1)
-  })
+        debounced()
+        await new Promise((r) => setTimeout(r, 30))
+        debounced() // Reset timer
+        await new Promise((r) => setTimeout(r, 30))
 
-  it('should pass arguments to the function', async () => {
-    let result = ''
-    const debounced = debounce((msg: string) => {
-      result = msg
-    }, 50)
+        expect(callCount).toBe(0) // Still waiting
 
-    debounced('hello')
-    await new Promise((r) => setTimeout(r, 100))
+        await new Promise((r) => setTimeout(r, 50))
+        expect(callCount).toBe(1)
+      })
 
-    expect(result).toBe('hello')
-  })
+      it('should pass arguments to the function', async () => {
+        let result = ''
+        const debounced = debounce((msg: string) => {
+          result = msg
+        }, 50)
 
-  it('should use the last call arguments', async () => {
-    let result = ''
-    const debounced = debounce((msg: string) => {
-      result = msg
-    }, 50)
+        debounced('hello')
+        await new Promise((r) => setTimeout(r, 100))
 
-    debounced('a')
-    debounced('b')
-    debounced('c')
+        expect(result).toBe('hello')
+      })
 
-    await new Promise((r) => setTimeout(r, 100))
-    expect(result).toBe('c')
+      it('should use the last call arguments', async () => {
+        let result = ''
+        const debounced = debounce((msg: string) => {
+          result = msg
+        }, 50)
+
+        debounced('a')
+        debounced('b')
+        debounced('c')
+
+        await new Promise((r) => setTimeout(r, 100))
+        expect(result).toBe('c')
+      })
+    })
   })
 })

@@ -1,5 +1,5 @@
 // TODO: Implement treeSelect
 
-export const treeSelect = () => {
+export const renderTreeSelect = () => {
   throw new Error('Not implemented')
 }
