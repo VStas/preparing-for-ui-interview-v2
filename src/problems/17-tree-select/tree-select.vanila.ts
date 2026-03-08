@@ -11,7 +11,10 @@ class TreeNode {
   children: TreeNode[] = []
   status: TSelectStatus = NOT_SELECTED
 
-  constructor(public name: string) {}
+  constructor(
+      public name: string,
+      public parent: TreeNode,
+  ) {}
 
   toString(level: number = -1): string {
     const dots = Math.max(0, level)
@@ -45,8 +48,8 @@ export const renderTreeSelect = (paths: string[], clicks: string[]): string => {
 // Uncomment to test your implementation:
 
 // Example 1: Basic tree rendering (no clicks)
-const paths1 = ['fruits/apple', 'fruits/banana', 'vegetables/carrot']
-console.log(renderTreeSelect(paths1, []))
+// const paths1 = ['fruits/apple', 'fruits/banana', 'vegetables/carrot']
+// console.log(renderTreeSelect(paths1, []))
 // Expected output:
 // [ ]fruits
 // .[ ]apple
@@ -55,21 +58,21 @@ console.log(renderTreeSelect(paths1, []))
 // .[ ]carrot
 
 // Example 2: Select a leaf node → parent becomes partial
-console.log(renderTreeSelect(['fruits/apple', 'fruits/banana'], ['apple']))
+// console.log(renderTreeSelect(['fruits/apple', 'fruits/banana'], ['apple']))
 // Expected output:
 // [o]fruits
 // .[v]apple
 // .[ ]banana
 
 // Example 3: Select all children → parent becomes selected
-console.log(renderTreeSelect(['fruits/apple', 'fruits/banana'], ['apple', 'banana']))
+// console.log(renderTreeSelect(['fruits/apple', 'fruits/banana'], ['apple', 'banana']))
 // Expected output:
 // [v]fruits
 // .[v]apple
 // .[v]banana
 
 // Example 4: Select parent → all children become selected, then deselect one child
-console.log(renderTreeSelect(['a/b', 'a/c'], ['a', 'b']))
+// console.log(renderTreeSelect(['a/b', 'a/c'], ['a', 'b']))
 // Expected output:
 // [o]a
 // .[ ]b
