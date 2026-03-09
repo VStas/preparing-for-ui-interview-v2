@@ -1,1 +1,12 @@
-/* Student solution styles */
+/* Container for the star rating */
+.container {}
+
+/* Base star button style: size, cursor, background, border, transition, opacity, text outline */
+.star {}
+
+/* Disabled/Readonly state: default cursor, no pointer events */
+.star:disabled,
+.star[aria-readonly='true'] {}
+
+/* Dimmed state for inactive stars: reduced opacity */
+.star[data-active='false'] {}

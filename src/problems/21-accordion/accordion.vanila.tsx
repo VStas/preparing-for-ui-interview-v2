@@ -3,7 +3,6 @@ import styles from './accordion.module.css'
 import flex from '@course/styles'
 import cx from '@course/cx'
 
-
 /**
  * Expected input:
  * {
@@ -20,11 +19,27 @@ import cx from '@course/cx'
  * 3. Provide toHTML template — map over items, render <details>/<summary>/<p> for each
  * 4. Add CSS — use styles and cx() for className composition
  */
-export class Accordion extends AbstractComponent<{}> {
-    constructor(config: TComponentConfig<{}>) {
-        super(config)
-    }
+type TAccordionItem = {
+    id: string,
+    title: string,
+    content: string
+}
+type TAccordionProps = {
+    items: TAccordionItem[]
+}
+
+export class Accordion extends AbstractComponent<TAccordionProps> {
+
     toHTML(): string {
-        return ''
+        const content = this.config.items.map(this.renderItem).join('').trim();
+        return `<div>${content}</div>`
     }
+
+    renderItem(item: TAccordionItem) {
+        return `<details class="${cx(flex.padding16, flex.margin8, flex.bgBlack1, flex.b1, styles.details)}">
+                    <summary class="${cx(styles.summary, flex.flexRowBetween)}">${item.title}</summary>
+                    <p>${item.content}</p>
+                </details>`
+    }
+
 }

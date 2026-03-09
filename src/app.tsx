@@ -81,6 +81,7 @@ import {
   StarRatingExample,
   StarRatingVanillaExample,
   StarRatingStudentExample,
+  StarRatingStudentVanillaExample,
 } from './problems/22-star-rating/star-rating.example'
 import {
   CalculatorExample,
@@ -333,6 +334,7 @@ const SECTIONS = {
           react: { component: StarRatingExample },
           vanilla: { component: StarRatingVanillaExample },
           studentReact: { component: StarRatingStudentExample },
+          studentVanilla: { component: StarRatingStudentVanillaExample },
         },
       },
       tabs: {

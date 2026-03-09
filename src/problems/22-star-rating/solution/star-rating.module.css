@@ -1,6 +1,5 @@
 .container {
 }
-
 /* Base star style */
 .star {
   cursor: pointer;
@@ -28,22 +27,5 @@
 
 /* Dimmed state for inactive stars */
 .star[data-active='false'] {
-  opacity: 0.2;
-}
-
-/* 
-   Hover logic:
-   Only apply hover effects when the container is NOT holding disabled/readonly stars.
-   Since we added pointer-events: none to disabled stars, the :hover won't trigger on them directly.
-   However, we need to ensure the container-level :has() logic plays nicely.
-*/
-
-/* 1. Highlight all when hovering a valid star */
-.container:has(.star:hover) .star {
-  opacity: 0.8;
-}
-
-/* 2. Dim subsequent stars when hovering */
-.container .star:hover ~ .star {
   opacity: 0.2;
 }
