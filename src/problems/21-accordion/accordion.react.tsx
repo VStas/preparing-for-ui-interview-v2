@@ -2,8 +2,6 @@ import css from './accordion.module.css'
 import flex from '@course/styles'
 import cx from '@course/cx'
 
-type TProps = {}
-
 /**
  * Expected input:
  * {
@@ -19,13 +17,13 @@ type TProps = {}
  * 3. Provide toHTML template — map over items, render <details>/<summary>/<p> for each
  * 4. Add CSS — use styles and cx() for className composition
  */
+
+type TProps = {}
+
 export const Accordion = (props: TProps) => {
   return (
     <div>
-      <details>
-        <summary>Click me to expand</summary>
-        <p>This content is hidden until you click</p>
-      </details>
+      {/* TODO: implement */}
     </div>
   )
 }

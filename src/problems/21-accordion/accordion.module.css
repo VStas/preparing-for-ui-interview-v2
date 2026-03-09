@@ -1,1 +1,15 @@
 /* Student solution styles */
+.summary {}
+.summary::-webkit-details-marker {}
+
+.details {}
+
+.details::details-content {}
+
+.details[open]::details-content {}
+
+/* Custom indicator (plus sign) */
+.summary::after {}
+
+/* Rotate the indicator when the item is open */
+.details[open] .summary::after {}

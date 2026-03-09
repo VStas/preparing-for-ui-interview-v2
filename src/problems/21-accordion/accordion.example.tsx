@@ -53,6 +53,7 @@ export const AccordionStudentVanillaExample = () => {
 
     accordionRef.current = new AccordionVanilaStudent({
       root: rootRef.current,
+      items: MOCK_DATA,
     })
 
     accordionRef.current.render()

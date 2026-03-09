@@ -396,6 +396,9 @@ declare const styles: {
   readonly cWhite9: string
   readonly cWhite10: string
   readonly bNone: string
+  readonly b1: string
+  readonly b2: string
+  readonly b4: string
   readonly w100px: string
   readonly h100px: string
   readonly wh100px: string
