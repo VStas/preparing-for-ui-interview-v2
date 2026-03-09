@@ -15,7 +15,7 @@ type TTabsProps = {
 }
 
 /**
- * Implement Tab component
+ * Step 1: Implement Tab component
  * - Render a <li> with a <button> inside
  * - Set data-tab-name={name} on the button
  */
@@ -33,7 +33,7 @@ export function Tab({ name }: TTabProps) {
  *
  * Optional: <Tabs target={ref}> to render content into an external container via portal
  *
- * Implement Tabs component
+ * Step 2: Implement Tabs component
  * - Track activeTab with useState (default: defaultTab or first child's name)
  * - Render <nav> with <ul> containing children (Tab components)
  * - Handle click on <ul> to detect button clicks and update activeTab

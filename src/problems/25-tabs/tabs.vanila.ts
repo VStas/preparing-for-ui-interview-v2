@@ -25,7 +25,7 @@ export type TTabsProps = {
  *   "target": HTMLElement (optional, external container for tab content)
  * }
  *
- * Extend AbstractComponent<TTabsProps>
+ * Step 1: Extend AbstractComponent<TTabsProps>
  * - Call super() with config, adding listeners: ['click']
  * - Store the default tab name (from config.defaultTab or first tab's name)
  */
@@ -39,7 +39,7 @@ export class Tabs extends AbstractComponent<TTabsProps> {
   }
 
   /**
-   * Implement toHTML
+   * Step 2: Implement toHTML
    * - Render a <nav> with a <ul> containing tab buttons (use #getTabs helper)
    * - If no external target, render a <section> for content below the nav
    * - Use cx() and flex utilities for layout (flexRowStart, flexGap16)
@@ -50,7 +50,7 @@ export class Tabs extends AbstractComponent<TTabsProps> {
   }
 
   /**
-   * Implement afterRender
+   * Step 3: Implement afterRender
    * - If no external target, query the content container from this.container
    * - Activate the default tab
    */
@@ -59,7 +59,7 @@ export class Tabs extends AbstractComponent<TTabsProps> {
   }
 
   /**
-   * Implement onClick
+   * Step 4: Implement onClick
    * - Find the closest <button> from event.target
    * - Read data-tab-name attribute
    * - If tab name changed, activate the new tab
