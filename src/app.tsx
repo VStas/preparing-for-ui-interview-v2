@@ -53,7 +53,10 @@ import {
   SquareGameVanillaExample,
   SquareGameStudentExample,
 } from './problems/42-square-game/square-game.example'
-import { UseFileUploadExample } from './problems/49-use-file-upload/use-file-upload.example'
+import {
+  UseFileUploadExample,
+  UseFileUploadStudentExample,
+} from './problems/49-use-file-upload/use-file-upload.example'
 import {
   UploadComponentExample,
   UploadComponentStudentExample,
@@ -351,18 +354,6 @@ const SECTIONS = {
           studentVanilla: { component: TabsStudentVanillaExample },
         },
       },
-      tooltip: {
-        id: 'tooltip',
-        name: 'Tooltip',
-        difficulty: 'easy',
-        variants: {
-          overview: { component: createProblemOverview(tooltipProblem) },
-          react: { component: TooltipExample },
-          vanilla: { component: TooltipVanillaExample },
-          studentReact: { component: TooltipStudentExample },
-          studentVanilla: { component: TooltipStudentVanillaExample },
-        },
-      },
       dialog: {
         id: 'dialog',
         name: 'Dialog',
@@ -373,6 +364,18 @@ const SECTIONS = {
           vanilla: { component: DialogVanillaExample },
           studentReact: { component: DialogStudentExample },
           studentVanilla: { component: DialogStudentVanillaExample },
+        },
+      },
+      tooltip: {
+        id: 'tooltip',
+        name: 'Tooltip',
+        difficulty: 'easy',
+        variants: {
+          overview: { component: createProblemOverview(tooltipProblem) },
+          react: { component: TooltipExample },
+          vanilla: { component: TooltipVanillaExample },
+          studentReact: { component: TooltipStudentExample },
+          studentVanilla: { component: TooltipStudentVanillaExample },
         },
       },
       table: {
@@ -489,6 +492,7 @@ const SECTIONS = {
         variants: {
           overview: { component: createProblemOverview(useFileUploadProblem) },
           react: { component: UseFileUploadExample },
+          studentReact: { component: UseFileUploadStudentExample },
         },
       },
       uploadComponent: {
