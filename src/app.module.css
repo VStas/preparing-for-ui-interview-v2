@@ -17,6 +17,7 @@
 }
 
 .sidebar {
+  user-select: none;
   width: calc(300px + 2rem);
   border-right: 1px solid #eee;
   padding: 20px;
@@ -160,7 +161,28 @@
 }
 
 .problemItem {
-  margin-bottom: 12px;
+  margin-bottom: 4px;
+}
+
+.problemItem > details > summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.problemItem > details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.problemItem > details > summary::before {
+  content: '▶';
+  font-size: 0.6rem;
+  margin-right: 6px;
+  transition: transform 0.15s;
+  display: inline-block;
+}
+
+.problemItem > details[open] > summary::before {
+  transform: rotate(90deg);
 }
 
 .problemHeader {

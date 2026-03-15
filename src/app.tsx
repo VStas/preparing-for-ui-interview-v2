@@ -298,7 +298,7 @@ const SECTIONS = {
       treeSelect: {
         id: 'treeSelect',
         name: 'Tree Select',
-        difficulty: 'medium',
+        difficulty: 'hard',
         variants: {
           overview: { component: createProblemOverview(treeSelectProblem) },
         },
@@ -476,7 +476,7 @@ const SECTIONS = {
       progressBar: {
         id: 'progressBar',
         name: 'Progress Bar',
-        difficulty: 'hard',
+        difficulty: 'easy',
         variants: {
           overview: { component: createProblemOverview(progressBarProblem) },
           react: { component: ProgressBarExample },
@@ -488,7 +488,7 @@ const SECTIONS = {
       useFileUpload: {
         id: '15.1',
         name: 'Use File Upload Hook',
-        difficulty: 'medium',
+        difficulty: 'hard',
         variants: {
           overview: { component: createProblemOverview(useFileUploadProblem) },
           react: { component: UseFileUploadExample },
@@ -508,7 +508,7 @@ const SECTIONS = {
       portfolioVisualizerUx: {
         id: '16.1',
         name: 'Portfolio Visualizer (UX)',
-        difficulty: 'extreme',
+        difficulty: 'medium',
         variants: {
           overview: { component: createProblemOverview(portfolioVisualizerUxProblem) },
           react: { component: PortfolioVisualizerUxExample },
@@ -655,8 +655,18 @@ export default function App() {
     }
   }
 
+  // Get initial open problems from localStorage
+  const getInitialOpenProblems = (): Record<string, boolean> => {
+    const stored = localStorage.getItem('sidebarOpenProblems')
+    if (stored) {
+      return JSON.parse(stored)
+    }
+    return {}
+  }
+
   const [selectedId, setSelectedId] = useState<string>(getInitialExample)
   const [openSections, setOpenSections] = useState<Record<string, boolean>>(getInitialOpenSections)
+  const [openProblems, setOpenProblems] = useState<Record<string, boolean>>(getInitialOpenProblems)
 
   const SelectedComponent = useMemo(() => findComponentBySelection(selectedId), [selectedId])
 
@@ -674,6 +684,15 @@ export default function App() {
     setOpenSections((prev) => {
       const updated = { ...prev, [sectionKey]: isOpen }
       localStorage.setItem('sidebarOpenSections', JSON.stringify(updated))
+      return updated
+    })
+  }
+
+  // Handle problem toggle and persist to localStorage
+  const handleProblemToggle = (problemId: string, isOpen: boolean) => {
+    setOpenProblems((prev) => {
+      const updated = { ...prev, [problemId]: isOpen }
+      localStorage.setItem('sidebarOpenProblems', JSON.stringify(updated))
       return updated
     })
   }
@@ -702,40 +721,48 @@ export default function App() {
                     <ul className={css.problemList}>
                       {Object.entries(section.items).map(([problemId, problem], index) => (
                         <li key={problemId} className={css.problemItem}>
-                          <div className={css.problemHeader}>
-                            <span className={css.problemName}>
-                              {/^\d/.test(problem.name)
-                                ? problem.name
-                                : `${index + 1}. ${problem.name}`}
-                            </span>
-                            <span className={`${css.chip} ${css[problem.difficulty]}`}>
-                              {problem.difficulty}
-                            </span>
-                          </div>
-                          <ul className={css.variantList}>
-                            {(Object.keys(problem.variants) as TVariantType[]).map((variant) => (
-                              <li key={variant}>
-                                <button
-                                  className={
-                                    selectedId === `${problemId}:${variant}` ? css.active : ''
-                                  }
-                                  onClick={() => handleSelectVariant(problemId, variant)}
-                                >
-                                  {variant === 'overview'
-                                    ? 'Problem Overview'
-                                    : variant === 'react'
-                                      ? 'Reference (React)'
-                                      : variant === 'vanilla'
-                                        ? 'Reference (Vanilla)'
-                                        : variant === 'studentReact'
-                                          ? 'Student (React)'
-                                          : variant === 'studentVanilla'
-                                            ? 'Student (Vanilla)'
-                                            : 'Example'}
-                                </button>
-                              </li>
-                            ))}
-                          </ul>
+                          <details
+                            open={openProblems[problemId] ?? false}
+                            onToggle={(e) => {
+                              e.stopPropagation()
+                              handleProblemToggle(problemId, (e.target as HTMLDetailsElement).open)
+                            }}
+                          >
+                            <summary className={css.problemHeader}>
+                              <span className={css.problemName}>
+                                {/^\d/.test(problem.name)
+                                  ? problem.name
+                                  : `${index + 1}. ${problem.name}`}
+                              </span>
+                              <span className={`${css.chip} ${css[problem.difficulty]}`}>
+                                {problem.difficulty}
+                              </span>
+                            </summary>
+                            <ul className={css.variantList}>
+                              {(Object.keys(problem.variants) as TVariantType[]).map((variant) => (
+                                <li key={variant}>
+                                  <button
+                                    className={
+                                      selectedId === `${problemId}:${variant}` ? css.active : ''
+                                    }
+                                    onClick={() => handleSelectVariant(problemId, variant)}
+                                  >
+                                    {variant === 'overview'
+                                      ? 'Problem Overview'
+                                      : variant === 'react'
+                                        ? 'Reference (React)'
+                                        : variant === 'vanilla'
+                                          ? 'Reference (Vanilla)'
+                                          : variant === 'studentReact'
+                                            ? 'Student (React)'
+                                            : variant === 'studentVanilla'
+                                              ? 'Student (Vanilla)'
+                                              : 'Example'}
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
+                          </details>
                         </li>
                       ))}
                     </ul>
