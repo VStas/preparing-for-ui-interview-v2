@@ -129,6 +129,10 @@ implementations.forEach(({ name, fn }) => {
           expect(detectType(new String('hello'))).toBe('string')
           expect(detectType(new Boolean(true))).toBe('boolean')
         })
+
+        it('should handle prototype object', () => {
+          expect(detectType({ constructor: 'hi' })).toBe('object')
+        })
       })
     })
   })
