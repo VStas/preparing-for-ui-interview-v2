@@ -1,7 +1,17 @@
 // bun test src/problems/05-throttle/test/throttle.test.ts
 
-export function throttle() {
-
+export function throttle<R, T extends (...args: any[]) => R>(this: unknown, fn: T, delay: number) {
+  let shouldIgnore = false
+  return (...args: Parameters<T>) => {
+    if (shouldIgnore) {
+      return
+    }
+    fn.apply(this, args)
+    shouldIgnore = true
+    setTimeout(() => {
+      shouldIgnore = false
+    }, delay)
+  }
 }
 // --- Examples ---
 // Uncomment to test your implementation:

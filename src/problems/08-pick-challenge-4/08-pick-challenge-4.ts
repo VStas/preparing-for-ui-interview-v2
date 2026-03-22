@@ -19,8 +19,8 @@ import type { Equal, Expect } from '@course/types'
 
 /* _____________ Your Code Here _____________ */
 
-type MyPick<T extends {}, U extends keyof T> = {
-  [K in U]: T[K]
+type MyPick<O, K extends keyof O> = {
+  [P in K]: O[P]
 }
 
 /* _____________ Test Cases _____________ */
